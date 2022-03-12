@@ -11,7 +11,6 @@ class BOJ467 {
                 arr[d(i)]++;
         }
     }
-
     static int d(int n) {
         int b = n;
         while (n != 0) {
