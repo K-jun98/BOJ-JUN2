@@ -18,6 +18,5 @@ class Main {
 
     }
 }
-
 //StringBuffer에 reverse()이용하여 뒤집기
 
