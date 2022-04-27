@@ -1,0 +1,19 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        double A = Integer.parseInt(st.nextToken());
+        double B = Integer.parseInt(st.nextToken());
+        int V = Integer.parseInt(st.nextToken());
+        double up=A-B;
+        double start=V-A;
+        System.out.println((int)((Math.ceil(start/up))+1));
+    }
+}
