@@ -8,17 +8,22 @@ class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int x = Integer.parseInt(st.nextToken());
-        int y = Integer.parseInt(st.nextToken());
-        int w = Integer.parseInt(st.nextToken());
-        int h = Integer.parseInt(st.nextToken());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
 
-        int minx = Math.min(x, w - x);
-        int miny = Math.min(y, h - y);
-
-        System.out.println(Math.min(minx, miny));
+        System.out.println(gcd(a,b));
+        System.out.println(a*b/gcd(a,b));
 
 
+    }
+
+    public static int gcd(int a,int b) {
+        while(b!=0) {
+            int temp = b;
+            b = a%b;
+            a = temp;
+        }
+        return a;
     }
 }
 
