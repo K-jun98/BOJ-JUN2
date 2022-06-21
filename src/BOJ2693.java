@@ -1,26 +1,25 @@
 import java.io.*;
 import java.util.*;
 
- class Main {
-    public static void main(String[] args) throws NumberFormatException, IOException {
+class Main {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int tc = Integer.parseInt(br.readLine());
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for(int i=0; i<tc; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-
-            for(int j=0; j<10; j++) {
-                list.add(Integer.parseInt(st.nextToken()));
-            }
-            Collections.sort(list);
-            bw.write(String.valueOf(list.get(7)+"\n"));
-            list.clear();
+        StringTokenizer st;
+        int N = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        int[] arr = new int[N];
+        int[] dp = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        bw.flush();
-        br.close();
-        bw.close();
+        dp[0] = arr[0];
+        int max = arr[0];
+        for (int i = 1; i < N; i++) {
+            dp[i] = Math.max((dp[i - 1] + arr[i]), arr[i]);
+            max = Math.max(dp[i], max);
+        }
+        System.out.println(max);
+
+
     }
 }
