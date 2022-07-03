@@ -1,80 +1,72 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Main{
-    static int N;
-    static char[][] map;
-    static char[][] visit;
-    static char[][] result;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        map = new char[N][N];
-        visit = new char[N][N];
-        result = new char[N][N];
-        sc.nextLine();
-        for(int i = 0 ; i < N ; i++) {
-            char[] arr = sc.nextLine().toCharArray();
-            for(int j = 0 ; j < N ; j++) {
-                map[i][j] = arr[j];
-            }
+ class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        char[][] chars = new char[N][N];
+        char[][] result = new char[N][N];
+        for (int i = 0; i < N; i++) {
+            chars[i] = br.readLine().toCharArray();
         }
 
-        for(int i = 0 ; i < N ; i++) {
-            char[] arr = sc.nextLine().toCharArray();
-            for(int j = 0 ; j < N ; j++) {
-                visit[i][j] = arr[j];
-            }
+        for (int i = 0; i < N; i++) {
+            result[i] = br.readLine().toCharArray();
         }
 
 
-        for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {
-                if(result[i][j] == '*') continue;
-                if(visit[i][j] == 'x') {
-                    if(map[i][j] == '*') {
-                        sol2();
-                        continue;
-                    }
-                    int a = sol(i,j);
-                    result[i][j] = (char)(a+'0');
-
-                }else {
-                    result[i][j] = '.';
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (result[i][j] == 'x') {
+                    result[i][j] = (boomCount(chars,result, i, j));
                 }
             }
         }
 
-
-        for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {
-                System.out.print(result[i][j]);
+        if(!check(chars,result)){
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if(chars[i][j]=='*')
+                        result[i][j]='*';
+                }
             }
-            System.out.println();
         }
-
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < N; i++) {
+            for(int j = 0; j < N; j++) {
+                sb.append(result[i][j]);
+            }
+            sb.append("\n");
+        }
+        System.out.print(sb);
     }
-    public static void sol2() {
-        for(int i = 0 ; i < N ; i++) {
-            for(int j = 0 ; j < N ; j++) {
-                if(map[i][j] == '*') {
-                    result[i][j] = '*';
-                }
-            }
-        }
-    }
-    public static int sol(int i,int j) {
-        int count =0;
-        int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1},{1,1},{-1,1},{1,-1},{-1,-1}};
-        for(int[] dir : dirs) {
-            int y= i+dir[0];
-            int x = j+dir[1];
-            if(y>=0 && y < N && x>=0 && x <N) {
-                if(map[y][x] == '*') {
-                    count++;
-                }
-            }
-        }
 
-        return count;
+
+
+    public static char boomCount(char[][] chars,char[][] result,int x,int y){
+        int cnt=0;
+        for (int k = x-1; k < x+2; k++) {
+            for (int l = y-1; l <y+2 ; l++) {
+                if(k<0||l<0||k>=chars.length||l>=chars.length)
+                    continue;
+                if(chars[k][l]=='*')
+                    cnt++;
+                if(chars[x][y]=='*'&&result[x][y]=='x')
+                    return '*';
+            }
+        }
+        return (char) (cnt+'0');
+    }
+    public static boolean check(char[][] chars,char[][] result){
+        for (int i = 0; i <chars.length; i++) {
+            for (int j = 0; j <chars.length; j++) {
+                if(chars[i][j]=='*'&&result[i][j]=='*'){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
