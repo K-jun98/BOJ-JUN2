@@ -11,7 +11,7 @@ public class Main {
 
         while(n>=2 && m>=1 && m+n >=3+k){
             n = n-2;
-            m= m-1;
+            m= m-1;s
             count++;
         }
         System.out.println(count);
