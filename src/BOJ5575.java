@@ -1,20 +1,29 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
-            int sh = sc.nextInt(), sm = sc.nextInt(), ss = sc.nextInt();
-            int eh = sc.nextInt(), em = sc.nextInt(), es = sc.nextInt();
-            int start = (sh * 3600) + (sm * 60) + ss;
-            int end = (eh * 3600) + (em * 60) + es;
-            int t = end - start;
-            int h = t / 3600;
-            int m = (t % 3600) / 60;
-            int s = (t % 3600) % 60;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println(h + " " + m + " " + s);
+        for (int i = 0; i < 3; i++) {
+            int time = 0;
+            int time2 = 0;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 2; j++) {
+                int h = Integer.parseInt(st.nextToken());
+                int m = Integer.parseInt(st.nextToken());
+                int s = Integer.parseInt(st.nextToken());
+                if (j == 0) {
+                    time = (h * 3600) + (m * 60) + s;
+                } else {
+                    time2 = (h * 3600) + (m * 60) + s;
+                }
+            }
+            time2 -= time;
+            System.out.println(time2 / 3600 + " " + (time2 % 3600) / 60 + " " + (time2 % 3600) % 60);
         }
     }
- 
+}
