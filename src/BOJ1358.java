@@ -25,12 +25,16 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             x = Integer.parseInt(st.nextToken());
             y = Integer.parseInt(st.nextToken());
-            if ((x_start <= x && x <= x_end && y_start <= y && y <= y_end) ||
-                    getDistance(x, y, x_start, y_half) <= r ||
-                    getDistance(x, y, x_end, y_half) <= r)
+            if (isaBoolean(x_start, y_start, x_end, y_end, r, y_half, x, y))
                 cnt++;
         }
         br.close();
         System.out.println(cnt);
+    }
+
+    private static boolean isaBoolean(int x_start, int y_start, int x_end, int y_end, int r, int y_half, int x, int y) {
+        return (x_start <= x && x <= x_end && y_start <= y && y <= y_end) ||
+                getDistance(x, y, x_start, y_half) <= r ||
+                getDistance(x, y, x_end, y_half) <= r;
     }
 }
