@@ -1,8 +1,11 @@
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
 
 public class Main {
+
     private final static int MAX = 30;
+
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int testCase = Integer.parseInt(reader.readLine());
@@ -19,9 +22,10 @@ public class Main {
         }
 
         for (int i = 0; i < testCase; i++) {
-            int[] input = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-            int n = input[1];
-            int r = input[0];
+            List<Integer> input = Arrays.stream(reader.readLine().split(" ")).map(Integer::parseInt).collect(
+                    Collectors.toList());
+            int n = input.get(1);
+            int r = input.get(0);
 
             System.out.println(dp[n][r]);
         }
