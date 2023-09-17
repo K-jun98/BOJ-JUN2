@@ -71,7 +71,7 @@ public class Main {
             nums[i] = br.readLine();
         }
         br.close();
-        Main m = new Main();
+        Solution m = new Solution();
         String[] result = m.findSumNum(nums);
         for(int i = 0; i < result.length; i++) {
             System.out.println(result[i]);
