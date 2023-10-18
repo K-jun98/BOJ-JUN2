@@ -8,11 +8,11 @@ public class Main {
         int count = 0;
         int stick = 64;
 
-        while(X>0) {
-            if(stick>X) stick /= 2;
+        while (X > 0) {
+            if (stick > X) stick /= 2;
             else {
                 count++;
-                X-=stick;
+                X -= stick;
             }
         }
 
